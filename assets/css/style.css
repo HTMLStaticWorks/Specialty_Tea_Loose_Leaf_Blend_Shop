@@ -108,6 +108,9 @@ h4{font-size:clamp(1.1rem,1.8vw,1.5rem);line-height:1.25;margin-block-end:0.5rem
 .mobile-drawer nav a{padding:13px 0;border-block-end:1px solid rgba(247,240,230,.08);font-family:var(--serif);font-size:1.5rem;color:rgba(247,240,230,.78);position:relative;transition:color .2s,padding-inline-start .2s}
 .mobile-drawer nav a:hover,.mobile-drawer nav a.active{color:var(--gold);padding-inline-start:14px;font-weight:700}
 .mobile-drawer nav a.active::before{content:'';position:absolute;inset-inline-start:0;inset-block-start:50%;transform:translateY(-50%);width:4px;height:24px;background:var(--gold);border-radius:2px}
+.mobile-drawer>.brand{padding-inline-end:60px;min-width:0}
+.mobile-drawer>.brand span{min-width:0}
+.mobile-drawer>.brand small{letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .drawer-close{position:absolute;inset-inline-end:24px;inset-block-start:24px;background:none;border:1px solid rgba(247,240,230,.2);color:#f7f0e6;font-size:1.5rem;width:44px;height:44px;cursor:pointer}
 .drawer-action{display:flex;align-items:center;gap:14px;background:rgba(247,240,230,.05);color:rgba(247,240,230,.88);border:1px solid rgba(247,240,230,.16);padding:10px 16px;text-align:start;font-size:.78rem;font-weight:600;letter-spacing:.08em;transition:all .2s;flex-shrink:0;border-radius:4px}
 .drawer-action:hover{background:rgba(247,240,230,.12);color:#f7f0e6;border-color:var(--gold)}
@@ -764,8 +767,11 @@ html[data-theme=dark] select option,html[data-theme=dark] .preferences select op
 ══════════════════════════════════════ */
 @media(max-width:1180px){
   .desktop-nav,.nav-tools{display:none}
-  .nav-wrap{grid-template-columns:1fr auto}
-  .menu-open{display:inline-flex}
+  .nav-wrap{grid-template-columns:minmax(0,1fr) auto;gap:12px}
+  .nav-wrap .brand{min-width:0}
+  .nav-wrap .brand span{min-width:0}
+  .nav-wrap .brand small{letter-spacing:.12em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .menu-open{display:inline-flex;flex-shrink:0;justify-self:end;align-self:center;margin:0}
   .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:79}
   .drawer-backdrop.open{display:block}
   .mobile-drawer{display:flex}
@@ -809,9 +815,10 @@ html[data-theme=dark] select option,html[data-theme=dark] .preferences select op
   .timeline li::before{inset-block-start:4px;inset-inline-start:-34px;width:10px;height:10px}
   .product-detail-grid{grid-template-columns:1fr}
   .product-detail-grid>img{min-height:0;height:420px}
-  .journey-tabs{grid-template-columns:repeat(5,1fr);gap:6px}
-  .journey-tabs button{padding:10px 4px}
-  .journey-tabs b{font-size:.9rem}
+  .journey-tabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+  .journey-tabs button{padding:10px 2px;min-width:0;justify-content:center}
+  .journey-tabs b{font-size:.78rem;letter-spacing:0;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
+  .journey-tabs .step-num{letter-spacing:.04em}
   .journey-card-content{grid-template-columns:1fr;gap:16px;text-align:center}
   .journey-step-circle{margin:0 auto}
   .journey-text-wrap{align-items:center;text-align:center}
@@ -994,6 +1001,10 @@ html[data-theme=dark] .team-quote{
   .story-grid{grid-template-columns:1fr}
   .story-stats{grid-template-columns:repeat(3,1fr)}
   .community-stats-bar{grid-template-columns:1fr;gap:18px}
+}
+@media(min-width:601px) and (max-width:1024px){
+  .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .team-grid>.team-card:last-child:nth-child(odd){grid-column:1/-1;justify-self:center;width:calc((100% - clamp(24px,3.5vw,40px))/2)}
 }
 @media(max-width:600px){
   .story-stats{grid-template-columns:1fr;gap:14px}
